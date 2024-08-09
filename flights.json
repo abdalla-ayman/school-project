@@ -1,0 +1,52 @@
+[
+  {
+    "id": "B001",
+    "from": "New York (JFK)",
+    "to": "Los Angeles (LAX)",
+    "availableSeats": 12,
+    "class": "Economy",
+    "price": 350,
+    "dateOfDeparture": "2024-09-15T08:30:00Z",
+    "dateOfLanding": "2024-09-15T11:45:00Z"
+  },
+  {
+    "id": "B002",
+    "from": "London (LHR)",
+    "to": "Dubai (DXB)",
+    "availableSeats": 5,
+    "class": "Business",
+    "price": 1200,
+    "dateOfDeparture": "2024-09-20T13:00:00Z",
+    "dateOfLanding": "2024-09-20T23:30:00Z"
+  },
+  {
+    "id": "B003",
+    "from": "Tokyo (NRT)",
+    "to": "Sydney (SYD)",
+    "availableSeats": 20,
+    "class": "Economy",
+    "price": 800,
+    "dateOfDeparture": "2024-10-05T22:00:00Z",
+    "dateOfLanding": "2024-10-06T09:15:00Z"
+  },
+  {
+    "id": "B004",
+    "from": "Paris (CDG)",
+    "to": "New York (JFK)",
+    "availableSeats": 10,
+    "class": "First Class",
+    "price": 3000,
+    "dateOfDeparture": "2024-11-02T07:15:00Z",
+    "dateOfLanding": "2024-11-02T13:00:00Z"
+  },
+  {
+    "id": "B005",
+    "from": "Dubai (DXB)",
+    "to": "Singapore (SIN)",
+    "availableSeats": 15,
+    "class": "Economy",
+    "price": 450,
+    "dateOfDeparture": "2024-12-10T14:00:00Z",
+    "dateOfLanding": "2024-12-10T20:30:00Z"
+  }
+]
