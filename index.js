@@ -10,11 +10,30 @@ const {
   generatingPaymentLink,
 } = require("./utils");
 
+app.use(express.static("public"));
+
+app.get("/", (req, res) => res.sendFile("./public/index.html"));
+
 app.get("/flights", async (req, res) => {
   try {
     let flights = await fs.readFile("./flights.json");
     flights = JSON.parse(flights);
     res.json(flights);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json("server error");
+  }
+});
+
+app.get("/flights/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    let flights = await fs.readFile("./flights.json");
+    flights = JSON.parse(flights);
+
+    let flight = flights.find((flight) => flight.id == id);
+
+    res.json(flight);
   } catch (error) {
     console.log(error);
     res.status(500).json("server error");
