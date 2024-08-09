@@ -76,7 +76,7 @@ async function confirmBooking(bookingId) {
   return;
 }
 
-async function generateAndSendTicketToEmail(userBooking, userFlight) {
+async function generateAndSendTicketToEmail(bookingId) {
   // code generating the ticket
   // code sending email
 

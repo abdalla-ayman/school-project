@@ -71,6 +71,8 @@ app.post("/verify-payment", async (req, res) => {
   // get the id from request (id is provided in request for payment earlier)
 
   await confirmBooking("some id");
+  await generateAndSendTicketToEmail("some id");
+  res.json({ success: true });
 });
 
 app.listen(3000, () => {
