@@ -8,7 +8,7 @@ function validateCustomerDate(req, res, next) {
   if (!passportNo) return res.status(400).json("passport number is required");
 
   let phoneNumberPattern = /\+\d{1,3}\s?\d{7,10}/;
-  if (!phoneNumberPattern.test(email))
+  if (!phoneNumberPattern.test(phoneNumber))
     return res
       .status(400)
       .json(
@@ -16,7 +16,7 @@ function validateCustomerDate(req, res, next) {
       );
 
   let passportNoPattern = /^[a-zA-Z0-9]{6,9}$/;
-  if (!passportNoPattern.test(email))
+  if (!passportNoPattern.test(passportNo))
     return res
       .status(400)
       .json("passport must be from 6 to 9 characters long ");
@@ -55,9 +55,9 @@ async function addBookingToDB(newBooking) {
     status: "PENDING-FOR-PAYMENT",
     id: Math.floor(Math.random() * 10000), // The maximum is exclusive and the minimum is inclusive
   };
-  bookings.push();
+  bookings.push(booking);
 
-  await fs.writeFile("./bookings.json", bookings);
+  await fs.writeFile("./bookings.json", JSON.stringify(bookings));
   return booking;
 }
 
@@ -72,7 +72,7 @@ async function confirmBooking(bookingId) {
     return booking;
   });
 
-  await fs.writeFile("./bookings.json", bookings);
+  await fs.writeFile("./bookings.json", JSON.stringify(bookings));
   return;
 }
 
@@ -88,7 +88,7 @@ async function generatingPaymentLink(booking) {
   //provide the user booking id with the request
   // get the redirect link from payment gateway
 
-  return "generatedLink";
+  return "https://www.paypal.com/eg/webapps/mpp/send-money-online";
 }
 
 const verifyPhoneNumber = async (phoneNumber) => {

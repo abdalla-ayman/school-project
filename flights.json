@@ -13,7 +13,7 @@
     "id": "B002",
     "from": "London (LHR)",
     "to": "Dubai (DXB)",
-    "availableSeats": 5,
+    "availableSeats": 4,
     "class": "Business",
     "price": 1200,
     "dateOfDeparture": "2024-09-20T13:00:00Z",

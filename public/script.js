@@ -1,6 +1,7 @@
 const flightCardsSection = document.getElementById("flight-cards");
 const flightDetailsSection = document.getElementById("flight-details");
 const bookingFormSection = document.getElementById("booking-form");
+const bookingForm = document.getElementById("reservation-form");
 
 async function create_cards() {
   const response = await fetch("/flights");
@@ -30,7 +31,7 @@ async function show_details(flightId) {
         <p>Available Seats: ${flight.availableSeats}</p>
         <p>Departure Date: ${flight.dateOfDeparture}</p>
         <p>Departure Date: ${flight.dateOfLanding}</p>
-        <button onclick="show_form(${flightId})">Book Now</button>
+        <button onclick="show_form('${flightId}')">Book Now</button>
     `;
   flightCardsSection.style.display = "none";
   flightDetailsSection.style.display = "block";
@@ -38,6 +39,14 @@ async function show_details(flightId) {
 
 function show_form(flightId) {
   flightDetailsSection.style.display = "none";
+  const inputElement = document.createElement("input");
+  inputElement.type = "text";
+  inputElement.id = "flightId";
+  inputElement.name = "flightId";
+  inputElement.value = flightId;
+  inputElement.hidden = true;
+
+  bookingForm.appendChild(inputElement);
   bookingFormSection.style.display = "block";
 }
 

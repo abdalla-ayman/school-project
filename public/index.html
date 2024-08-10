@@ -18,11 +18,11 @@
 
         <section id="booking-form" style="display: none;">
             <h2>Book Your Flight</h2>
-            <form id="reservation-form">
-                <input type="text" id="name" placeholder="Full Name">
-                <input type="email" id="email" placeholder="Email">
-                <input type="tel" id="phone" placeholder="Phone Number">
-                <input type="text" id="passport info" placeholder="passport number">
+            <form id="reservation-form" action="/book" method="post">
+                <input type="text" id="name" placeholder="Full Name" name="fullName">
+                <input type="email" id="email" placeholder="Email" name="email">
+                <input type="tel" id="phone" placeholder="Phone Number" name="phoneNumber">
+                <input type="text" id="passport info" placeholder="passport number" name="passportNo">
                 <button type="submit">Confirm Booking</button>
             </form>
         </section>

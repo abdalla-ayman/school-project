@@ -11,6 +11,7 @@ const {
 } = require("./utils");
 
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => res.sendFile("./public/index.html"));
 
@@ -53,7 +54,7 @@ app.post(
       let flights = await fs.readFile("./flights.json");
       flights = JSON.parse(flights);
 
-      flights.map((flight) => {
+      flights = flights.map((flight) => {
         if (flight.id === flightId) {
           if (flight.availableSeats) {
             flight.availableSeats -= 1;
@@ -75,9 +76,10 @@ app.post(
           .json("this flight dose not have available seats");
 
       const booking = await addBookingToDB(userBooking);
+      await fs.writeFile("./flights.json", JSON.stringify(flights));
       let redirectLink = await generatingPaymentLink(booking);
 
-      res.json(redirectLink);
+      res.redirect(redirectLink);
     } catch (error) {
       console.log(error);
       res.status(500).json("server error");
@@ -88,10 +90,24 @@ app.post(
 app.post("/verify-payment", async (req, res) => {
   //this request is made by payment gateway incase of payment success
   // get the id from request (id is provided in request for payment earlier)
+  let success = true;
+  if (success) {
+    await confirmBooking("some id");
+    await generateAndSendTicketToEmail("some id");
+    res.json({ success: true });
+  } else {
+    let flights = await fs.readFile("./flights.json");
+    flights = JSON.parse(flights);
 
-  await confirmBooking("some id");
-  await generateAndSendTicketToEmail("some id");
-  res.json({ success: true });
+    flights = flights.map((flight) => {
+      if (flight.id === flightId) {
+        flight.availableSeats -= 1;
+      }
+      return flight;
+    });
+
+    await fs.writeFile("./flights.json", JSON.stringify(flights));
+  }
 });
 
 app.listen(3000, () => {
